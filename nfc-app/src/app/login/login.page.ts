@@ -18,13 +18,7 @@ export class LoginPage implements OnInit {
     private fb: FormBuilder) { }
 
   async signUp() {
-    const user = await this.auth.register(this.credentials.value);
-    if (user) {
-      this.router.navigateByUrl("/tabs", { replaceUrl: true });
-    }
-    else{
-      alert('Registration Failed, Try Again!');
-    }
+    this.router.navigateByUrl('/register', {replaceUrl: true});
   }
 
   async login(){
@@ -40,7 +34,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
     this.credentials = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required, Validators.minLength(6)]],
     })
   }
 

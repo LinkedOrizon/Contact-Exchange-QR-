@@ -1,17 +1,43 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      Tab 3
+    <ion-title class="header">
+      Profile
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  
+  <ion-title class="ion-margin">
+    Contact Info:
+  </ion-title>
+  <form [formGroup]="info" (ngSubmit)="save()" *ngIf="editing">
+    <ion-item fill="solid" class="ion-margin">
+      <ion-input type="text" placeholder="Name" value="{{name}}" formControlName="name" disabled="{{!edit}}">
+      </ion-input>
+    </ion-item>
+    <ion-item fill="solid" class="ion-margin">
+      <ion-input type="email" placeholder="Email" value="{{email}}" formControlName="email" disabled="{{!edit}}">
+      </ion-input>
+    </ion-item>
+    <ion-item fill="solid" class="ion-margin">
+      <ion-input type="text" placeholder="Phone Number" value="{{phone}}" formControlName="pnumber" disabled="{{!edit}}">
+      </ion-input>
+    </ion-item>
+    <ion-item fill="solid" class="ion-margin">
+      <ion-input type="text" placeholder="Address" value="{{address}}" formControlName="address" disabled="{{!edit}}">
+      </ion-input>
+    </ion-item>
+    
+    <ion-button expand="full" type="button" (click)="toggleEdit()" disabled={{edit}}> Edit </ion-button>
+    <ion-button expand="full" type="submit" [disabled]="!info.valid || edit == false"> Save </ion-button>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
+
+  </form>
+  
+    <ion-toolbar>
+      
+    </ion-toolbar>
+  
+
 </ion-content>
