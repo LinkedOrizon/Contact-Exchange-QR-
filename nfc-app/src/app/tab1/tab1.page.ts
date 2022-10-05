@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { NgControlStatusGroup } from '@angular/forms';
+import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 import { NFC, Ndef} from '@awesome-cordova-plugins/nfc/ngx'
+import { DatabaseService } from '../service/database.service';
+
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
@@ -7,21 +11,39 @@ import { NFC, Ndef} from '@awesome-cordova-plugins/nfc/ngx'
 })
 export class Tab1Page implements OnInit {
 
-  constructor(private nfc: NFC, private ndef: Ndef) {}
+  constructor(private db: DatabaseService, private barcodeScanner: BarcodeScanner) {}
+  qrcodecontent = ''
+  sharing = false;
+  docSnap;
+  scannedText: string;
+  details: any;
 
   ngOnInit(){
-    this.nfc.addNdefListener(() => {alert('Successfully attached listener');},() => {alert('error occured');});
+    this.startup();
   }
 
-  nfcScan(){
-
+  async startup(){
+    this.docSnap = await this.db.getData();
+    this.qrcodecontent = this.docSnap.name + "," + this.docSnap.email + "," + this.docSnap.phone + "," + this.docSnap.address;
   }
 
-  sendData(){
-    alert('Tag');
+  toggleShare(){
+    this.sharing = !this.sharing
   }
 
-  error(){
-    alert('error')
+  startScanner(){
+    this.barcodeScanner.scan().then(barcodeData => {
+      console.log('Barcode data', barcodeData);
+      this.scannedText = barcodeData?.text;
+      this.addContact();
+     }).catch(err => {
+         console.log('Error', err);
+     });
   }
+
+  addContact(){
+    this.details = this.scannedText.split(",");
+    
+  }
+
 }

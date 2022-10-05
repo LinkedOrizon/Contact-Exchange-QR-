@@ -8,12 +8,25 @@
 
 <ion-content [fullscreen]="true">
 
-  <ion-button type="button" (click)="nfcScan()"> Test Detection </ion-button>
+  <ion-button expand="full" type="button" (click)="startScanner()" class="ion-margin"> Scan </ion-button>
+  <ion-button expand="full" type="button" (click)="toggleShare()" class="ion-margin"> Share Contact Info </ion-button>
 
-  <ion-toolbar>
+  <ion-card class="ion-text-center" *ngIf="sharing">
+    <ion-card-content>
+      <qrcode
+        [qrdata]="qrcodecontent"
+        [width]="256"
+        [errorCorrectionLevel]="'M'">
+      </qrcode>
+    </ion-card-content>
 
-  </ion-toolbar>
+    <ion-label class="ion-text-wrap"> Scanned Result: {{scannedText}}</ion-label>
 
+    <ion-item *ngFor="let detail of details">
+      <p>{{detail}}</p>
+    </ion-item>
+  </ion-card>
+  
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  
 </ion-content>

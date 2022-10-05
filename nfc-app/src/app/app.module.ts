@@ -18,12 +18,12 @@ import { provideFirestore, getFirestore } from '@angular/fire/firestore'
 import { provideStorage, getStorage } from '@angular/fire/storage'
 import { initializeApp, provideFirebaseApp } from '@angular/fire/app';
 import { NFC, Ndef } from "@awesome-cordova-plugins/nfc/ngx";
-
+import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 
 @NgModule({
   declarations: [AppComponent],
   imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, provideFirebaseApp(() => initializeApp(firebaseConfig.firebase)), provideAuth(() => getAuth()), provideFirestore(() => getFirestore())],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, NFC, Ndef,],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }, NFC, Ndef, BarcodeScanner],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
