@@ -21,4 +21,10 @@ export class Tab2Page implements OnInit {
     this.contacts = this.docSnap.contacts;
   }
 
+  delete(item){
+    alert(item);
+    this.contacts.splice(item, 1);
+    this.db.updateContacts(this.contacts);
+  }
+
 }

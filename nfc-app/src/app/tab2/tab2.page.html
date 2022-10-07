@@ -11,19 +11,19 @@
     Contacts Information:
   </ion-title>
 
-  <ion-item *ngFor="let con of contacts">
+  <ion-item *ngFor="let con of contacts; index as i">
     <ion-card>
       <ion-card-content>
         <ion-title>{{con.name}}</ion-title>
-        <p class="fields">{{con.email}}</p>
-        <p>{{con.address}}</p>
-        <p>{{con.phone}}</p>
+        <p>Email: {{con.email}}</p>
+        <p>Phone: {{con.phone}}</p>
+        <p>Address: {{con.address}}</p>
       </ion-card-content>
-      <ion-button expand="block" type="button" click="share()">
+      <ion-button expand="block" type="button" (click)="share()">
          Share 
         <ion-icon slot="end" name="share"></ion-icon>
       </ion-button>
-      <ion-button expand="block" type="button" color="danger" click="delete()"> 
+      <ion-button expand="block" type="button" color="danger" (click)="delete({i})"> 
         Delete 
         <ion-icon slot="end" name="trash"></ion-icon>
       </ion-button>

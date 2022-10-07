@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { NgControlStatusGroup } from '@angular/forms';
+import { NavigationExtras } from '@angular/router';
 import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 import { NFC, Ndef} from '@awesome-cordova-plugins/nfc/ngx'
 import { DatabaseService } from '../service/database.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tab1',
@@ -11,7 +13,7 @@ import { DatabaseService } from '../service/database.service';
 })
 export class Tab1Page implements OnInit {
 
-  constructor(private db: DatabaseService, private barcodeScanner: BarcodeScanner) {}
+  constructor(private db: DatabaseService, private barcodeScanner: BarcodeScanner, private router: Router) {}
   qrcodecontent = ''
   sharing = false;
   docSnap;
@@ -43,7 +45,12 @@ export class Tab1Page implements OnInit {
 
   addContact(){
     this.details = this.scannedText.split(",");
-    
+    const navigationExtras: NavigationExtras = {
+      state: {
+        contactInfo: this.details
+      },
+    }
+    this.router.navigateByUrl("/add-contact", navigationExtras);
   }
 
 }

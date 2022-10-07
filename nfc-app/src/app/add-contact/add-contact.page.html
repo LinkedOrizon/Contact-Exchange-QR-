@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title> Confirm Contacts </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-title> Add Contact: </ion-title>
+
+  <ion-card>
+
+    <ion-card-content>
+
+      <ion-item *ngFor="let con of contactInfo">
+        <p>{{con}}</p>
+      </ion-item>
+
+      <ion-item class="buttons">
+        <ion-button type="button" (click)="addUser()"> Add Contact </ion-button>
+        <ion-button type="button" (click)="cancel()"> Cancel </ion-button>
+      </ion-item>
+    </ion-card-content>
+
+  </ion-card>
+  
+</ion-content>

@@ -23,6 +23,11 @@ const routes: Routes = [
         path: '',
         redirectTo: '/tabs/tab1',
         pathMatch: 'full'
+      },
+      {
+        path: 'reload2',
+        redirectTo: '/tabs/tab2',
+        pathMatch: 'full'
       }
     ]
   },

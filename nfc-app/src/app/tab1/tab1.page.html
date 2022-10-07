@@ -1,8 +1,12 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Tab 1
+      QR Contact Info Exchange
     </ion-title>
+    <ion-button> 
+      Logout
+      <icon></icon>
+    </ion-button>
   </ion-toolbar>
 </ion-header>
 
@@ -19,12 +23,6 @@
         [errorCorrectionLevel]="'M'">
       </qrcode>
     </ion-card-content>
-
-    <ion-label class="ion-text-wrap"> Scanned Result: {{scannedText}}</ion-label>
-
-    <ion-item *ngFor="let detail of details">
-      <p>{{detail}}</p>
-    </ion-item>
   </ion-card>
   
 

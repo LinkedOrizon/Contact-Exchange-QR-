@@ -22,4 +22,18 @@ export class DatabaseService {
     const docSnap = await getDoc(userDocRef);
     return docSnap.data();
   }
+
+  async addContact(newContact: string[]){
+    const userDocRef = doc(this.firestore, `users/${this.curUser.email}`);
+    const docSnap = await getDoc(userDocRef);
+    var curCon: any = docSnap.data().contacts;
+    curCon = [...curCon, {name: newContact[0], email: newContact[1], phone: newContact[2], address: newContact[3]}]
+    await setDoc(userDocRef, {contacts: curCon}, {merge: true},);
+  }
+
+  async updateContacts(updatedContacts){
+    const userDocRef = doc(this.firestore, `users/${this.curUser.email}`);
+    const docSnap = await getDoc(userDocRef);
+    await setDoc(userDocRef, {contacts: updatedContacts}, {merge: true});
+  }
 }
