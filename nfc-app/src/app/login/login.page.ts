@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterModule, Router } from '@angular/router';
 import { AuthService } from 'src/service/auth.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DatabaseService } from '../service/database.service';
 
 @Component({
   selector: 'app-login',
@@ -15,10 +16,13 @@ export class LoginPage implements OnInit {
   constructor(
     private router: Router,
     private auth: AuthService,
-    private fb: FormBuilder) { }
+    private fb: FormBuilder,
+    private db: DatabaseService) { }
 
   async signUp() {
     this.router.navigateByUrl('/register', {replaceUrl: true});
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+    this.router.onSameUrlNavigation = 'reload';
   }
 
   async login(){

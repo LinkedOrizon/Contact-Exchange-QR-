@@ -11,10 +11,19 @@ p {
     font-weight: 400;
 }
 
-ion-title {
+.headerStrip {
+    flex: 1;
+    flex-direction: row;
     text-align: center;
-    font-size: 36;
-    font-weight: 700;
-    font-size: 22px;
-    
+}
+
+.titleHeader {
+    font-size: 28px;
+    width: 50%;
+}
+
+.logoutButton {
+    width: 30%;
+    height: 40px;
+    flex-direction: row;
 }

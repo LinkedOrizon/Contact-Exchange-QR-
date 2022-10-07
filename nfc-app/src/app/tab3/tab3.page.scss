@@ -1,3 +1,16 @@
-.header {
+.headerStrip {
+    flex: 1;
+    flex-direction: row;
     text-align: center;
+}
+
+.titleHeader {
+    font-size: 28px;
+    width: 50%;
+}
+
+.logoutButton {
+    width: 30%;
+    height: 40px;
+    flex-direction: row;
 }

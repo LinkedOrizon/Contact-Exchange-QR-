@@ -1,12 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
-      QR Contact Info Exchange
+    <ion-item class="headerStrip" style="height: 50px">
+    <ion-title class="titleHeader">
+      QR Scanner
     </ion-title>
-    <ion-button> 
+    <ion-button (click)="signOut()" class="logoutButton">
       Logout
-      <icon></icon>
     </ion-button>
+  </ion-item>
   </ion-toolbar>
 </ion-header>
 
@@ -17,14 +18,11 @@
 
   <ion-card class="ion-text-center" *ngIf="sharing">
     <ion-card-content>
-      <qrcode
-        [qrdata]="qrcodecontent"
-        [width]="256"
-        [errorCorrectionLevel]="'M'">
+      <qrcode [qrdata]="qrcodecontent" [width]="256" [errorCorrectionLevel]="'M'">
       </qrcode>
     </ion-card-content>
   </ion-card>
-  
 
-  
+
+
 </ion-content>

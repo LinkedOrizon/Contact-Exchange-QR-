@@ -1,8 +1,13 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title class="header">
+    <ion-item class="headerStrip" style="height: 50px">
+    <ion-title class="titleHeader">
       Profile
     </ion-title>
+    <ion-button (click)="signOut()" class="logoutButton">
+      Logout
+    </ion-button>
+  </ion-item>
   </ion-toolbar>
 </ion-header>
 
@@ -35,9 +40,6 @@
 
   </form>
   
-    <ion-toolbar>
-      
-    </ion-toolbar>
   
 
 </ion-content>

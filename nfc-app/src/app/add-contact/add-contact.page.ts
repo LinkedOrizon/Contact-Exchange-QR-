@@ -25,6 +25,7 @@ export class AddContactPage implements OnInit {
 
   async addUser(){
     await this.db.addContact(this.contactInfo);
+    alert('Successfully addded contact!');
     this.router.navigateByUrl('/tabs', {replaceUrl: true});
   }
 

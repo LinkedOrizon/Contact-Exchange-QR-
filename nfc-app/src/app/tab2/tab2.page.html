@@ -1,9 +1,15 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>
+    <ion-item class="headerStrip" style="height: 50px">
+    <ion-title class="titleHeader">
       Contacts
     </ion-title>
+    <ion-button (click)="signOut()" class="logoutButton">
+      Logout
+    </ion-button>
+  </ion-item>
   </ion-toolbar>
+    
 </ion-header>
 
 <ion-content [fullscreen]="true">

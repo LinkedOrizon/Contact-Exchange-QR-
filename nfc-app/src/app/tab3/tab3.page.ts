@@ -1,25 +1,29 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
+import { ViewDidEnter } from '@ionic/angular';
+import { AuthService } from 'src/service/auth.service';
 import { DatabaseService } from '../service/database.service';
 @Component({
   selector: 'app-tab3',
-  templateUrl: './tab3.page.html',
-  styleUrls: ['./tab3.page.scss']
+  templateUrl: 'tab3.page.html',
+  styleUrls: ['tab3.page.scss']
 })
-export class Tab3Page implements OnInit {
+export class Tab3Page implements OnInit, ViewDidEnter {
   editing = true;
   edit = false;
   test = "Hello";
-  info: FormGroup
+  info: FormGroup;
   docSnap;
   name;
   phone;
   email;
   address;
-  constructor(private fb: FormBuilder, private db: DatabaseService) {}
+
+  constructor(private fb: FormBuilder, private db: DatabaseService, private auth: AuthService, private router: Router) {}
 
   ngOnInit() {
-    this.init();
+    this.init()
   }
 
   async init(){
@@ -41,11 +45,17 @@ export class Tab3Page implements OnInit {
     this.toggleEdit();
   }
 
-  load(){
-
-  }
-
   toggleEdit(){
     this.edit = !this.edit;
+  }
+
+  ionViewDidEnter() {
+    this.init();
+  }
+
+  signOut(){
+    this.auth.logout();
+    this.router.navigateByUrl('/login',{replaceUrl: true});
+
   }
 }

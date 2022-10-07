@@ -1,19 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgControlStatusGroup } from '@angular/forms';
-import { NavigationExtras } from '@angular/router';
+import { NavigationEnd, NavigationExtras, RouterEvent } from '@angular/router';
 import { BarcodeScanner } from '@awesome-cordova-plugins/barcode-scanner/ngx';
 import { NFC, Ndef} from '@awesome-cordova-plugins/nfc/ngx'
 import { DatabaseService } from '../service/database.service';
 import { Router } from '@angular/router';
+import { AuthService } from 'src/service/auth.service';
+import { ViewWillEnter, ViewDidEnter, ViewDidLeave } from '@ionic/angular';
+
 
 @Component({
   selector: 'app-tab1',
   templateUrl: 'tab1.page.html',
   styleUrls: ['tab1.page.scss']
 })
-export class Tab1Page implements OnInit {
+export class Tab1Page implements OnInit, ViewDidEnter {
 
-  constructor(private db: DatabaseService, private barcodeScanner: BarcodeScanner, private router: Router) {}
+  constructor(private db: DatabaseService, private barcodeScanner: BarcodeScanner, private router: Router, private auth: AuthService) {
+  }
+
   qrcodecontent = ''
   sharing = false;
   docSnap;
@@ -24,12 +29,18 @@ export class Tab1Page implements OnInit {
     this.startup();
   }
 
+  ionViewDidEnter() {
+    this.startup();
+  }
+
   async startup(){
     this.docSnap = await this.db.getData();
     this.qrcodecontent = this.docSnap.name + "," + this.docSnap.email + "," + this.docSnap.phone + "," + this.docSnap.address;
   }
 
-  toggleShare(){
+  async toggleShare(){
+    this.docSnap = await this.db.getData();
+    this.qrcodecontent = this.docSnap.name + "," + this.docSnap.email + "," + this.docSnap.phone + "," + this.docSnap.address;
     this.sharing = !this.sharing
   }
 
@@ -51,6 +62,12 @@ export class Tab1Page implements OnInit {
       },
     }
     this.router.navigateByUrl("/add-contact", navigationExtras);
+  }
+
+  signOut(){
+    this.sharing = false;
+    this.auth.logout()
+    this.router.navigateByUrl("/login");
   }
 
 }
