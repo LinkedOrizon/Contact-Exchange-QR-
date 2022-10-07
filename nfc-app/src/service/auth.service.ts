@@ -14,11 +14,11 @@ export class AuthService {
 
   
   
-  async register({ email, password, name, phone }) {
+  async register({ email, password, name, phone, address, company}) {
     try {
       const user = await createUserWithEmailAndPassword(this.authentic, email, password);
       const userDocRef = doc(this.firestore, `users/${email}`);
-      await setDoc(userDocRef, {contacts: [{name: 'test', email: 'test@gmail.com', phone: '0333333333', address: '123 test streeet'}], name: name, email: email, phone: phone, address: ' '})
+      await setDoc(userDocRef, {contacts: [], name: name, email: email, phone: phone, address: address, company: company})
       this.db.setUser(this.authentic.currentUser);
       return user;
     }

@@ -13,19 +13,21 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-title class="ion-margin">
-    Contacts Information:
+  <ion-title class="ion-margin" style="text-align:center; font-size: xx-large;">
+    Saved Contacts Info:
   </ion-title>
 
+  <!--For each content, present their contact information as well as a share and delete button-->
   <ion-item *ngFor="let con of contacts; index as i">
     <ion-card>
       <ion-card-content>
-        <ion-title>{{con.name}}</ion-title>
+        <ion-title style="text-align:center; font-size: x-large; text-transform: capitalize;">{{con.name}}</ion-title>
         <p>Email: {{con.email}}</p>
         <p>Phone: {{con.phone}}</p>
         <p>Address: {{con.address}}</p>
+        <p>Company: {{con.company}}</p>
       </ion-card-content>
-      <ion-button expand="block" type="button" (click)="share()">
+      <ion-button color="tertiary" expand="block" type="button" (click)="createQR({i})">
          Share 
         <ion-icon slot="end" name="share"></ion-icon>
       </ion-button>

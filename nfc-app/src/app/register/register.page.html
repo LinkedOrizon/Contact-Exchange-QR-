@@ -1,17 +1,18 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>register</ion-title>
+    <ion-title style="text-align: center">Register</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <!--Form to be filled on registration-->
   <form [formGroup]="credentials" (ngSubmit)="register()">
     <ion-item fill="solid" class="ion-margin">
       <ion-input type="email" placeholder="Email" formControlName="email">
       </ion-input>
     </ion-item>
     <ion-item fill="solid" class="ion-margin">
-      <ion-input type="password" placeholder="Password" formControlName="password">
+      <ion-input type="password" placeholder="Password (Min 6 Chars.)" formControlName="password">
       </ion-input>
     </ion-item>
     <ion-item fill="solid" class="ion-margin">
@@ -22,8 +23,17 @@
       <ion-input type="text" placeholder="Phone Number" formControlName="phone">
       </ion-input>
     </ion-item>
-
-    <ion-button expand="full" type="submit" [disabled]="!credentials.valid"> Sign Up </ion-button>
+    <ion-item fill="solid" class="ion-margin">
+      <ion-input type="text" placeholder="Address" formControlName="address">
+      </ion-input>
+    </ion-item>
+    <ion-item fill="solid" class="ion-margin">
+      <ion-input type="text" placeholder="Company" formControlName="company">
+      </ion-input>
+    </ion-item>
+    <!--Attempts user signup-->
+    <ion-button color="success" expand="full" type="submit" [disabled]="!credentials.valid"> Sign Up </ion-button>
+    <!--Return to login page if they press cancel-->
     <ion-button expand="full" type="button" (click)="cancel()"> Cancel </ion-button>
 
   </form>

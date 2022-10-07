@@ -14,6 +14,7 @@ export class AddContactPage implements OnInit {
   contactInfo: string[];
 
   ngOnInit() {
+    //get sent contact information from scan and set field to hold it
     const details = this.router.getCurrentNavigation().extras.state;
     this.contactInfo = details.contactInfo;
     
@@ -24,6 +25,7 @@ export class AddContactPage implements OnInit {
   }
 
   async addUser(){
+    //sends request to database service to add to users contacts document field in database
     await this.db.addContact(this.contactInfo);
     alert('Successfully addded contact!');
     this.router.navigateByUrl('/tabs', {replaceUrl: true});

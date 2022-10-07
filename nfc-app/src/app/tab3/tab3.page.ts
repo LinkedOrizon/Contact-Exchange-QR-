@@ -19,6 +19,7 @@ export class Tab3Page implements OnInit, ViewDidEnter {
   phone;
   email;
   address;
+  company;
 
   constructor(private fb: FormBuilder, private db: DatabaseService, private auth: AuthService, private router: Router) {}
 
@@ -27,20 +28,24 @@ export class Tab3Page implements OnInit, ViewDidEnter {
   }
 
   async init(){
+    //sets the fields in the form to the users contact info
     this.docSnap = await this.db.getData();
     this.name = this.docSnap.name;
     this.phone = this.docSnap.phone;
     this.email = this.docSnap.email;
     this.address = this.docSnap.address;
+    this.company = this.docSnap.company;
     this.info = this.fb.group({
       name: [this.name, [Validators.required, Validators.minLength(1)]],
       email: [this.email],
       pnumber: [this.phone, [Validators.required, Validators.minLength(8), Validators.pattern(/^[0-9]\d*$/)]],
       address: [this.address],
+      company: [this.company],
     })
   }
 
   save(){
+    //send new form and its values to the database service for storage when saving
     this.db.saveContactInfo(this.info.value);
     this.toggleEdit();
   }

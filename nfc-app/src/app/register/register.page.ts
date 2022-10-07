@@ -14,6 +14,7 @@ export class RegisterPage implements OnInit {
   constructor(private fb: FormBuilder, private router: Router, private auth: AuthService,) { }
 
   async register(){
+    //send credentials to the database service to try register user, if successful then route to the homepage
     const user = await this.auth.register(this.credentials.value);
     if (user) {
       this.router.navigateByUrl("/tabs", { replaceUrl: true });
@@ -24,6 +25,7 @@ export class RegisterPage implements OnInit {
   }
 
   cancel(){
+    //route back to login on cancel
     this.router.navigateByUrl('/login', {replaceUrl: true});
   }
 
@@ -33,6 +35,8 @@ export class RegisterPage implements OnInit {
       password: ['', [Validators.required, Validators.minLength(6)]],
       name: ['', [Validators.required, Validators.minLength(1)]],
       phone: ['', [Validators.required, Validators.minLength(8), Validators.pattern(/^[0-9]\d*$/)]],
+      address: [''],
+      company: [''],
     })
   }
 

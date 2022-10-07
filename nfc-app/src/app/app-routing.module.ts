@@ -26,7 +26,11 @@ const routes: Routes = [
   {
     path: 'add-contact',
     loadChildren: () => import('./add-contact/add-contact.module').then( m => m.AddContactPageModule)
+  },  {
+    path: 'sharecontact',
+    loadChildren: () => import('./sharecontact/sharecontact.module').then( m => m.SharecontactPageModule)
   }
+
 ];
 @NgModule({
   imports: [

@@ -35,16 +35,18 @@ export class Tab1Page implements OnInit, ViewDidEnter {
 
   async startup(){
     this.docSnap = await this.db.getData();
-    this.qrcodecontent = this.docSnap.name + "," + this.docSnap.email + "," + this.docSnap.phone + "," + this.docSnap.address;
+    this.qrcodecontent = this.docSnap.name + "," + this.docSnap.email + "," + this.docSnap.phone + "," + this.docSnap.address + "," + this.docSnap.company;
   }
 
   async toggleShare(){
+    //toggles the qr code for sharing contact information
     this.docSnap = await this.db.getData();
-    this.qrcodecontent = this.docSnap.name + "," + this.docSnap.email + "," + this.docSnap.phone + "," + this.docSnap.address;
+    this.qrcodecontent = this.docSnap.name + "," + this.docSnap.email + "," + this.docSnap.phone + "," + this.docSnap.address + "," + this.docSnap.company;
     this.sharing = !this.sharing
   }
 
   startScanner(){
+    //starts barcode scanner with the camera, and navigates to add-contact should it scan a qr code.
     this.barcodeScanner.scan().then(barcodeData => {
       console.log('Barcode data', barcodeData);
       this.scannedText = barcodeData?.text;
@@ -55,6 +57,7 @@ export class Tab1Page implements OnInit, ViewDidEnter {
   }
 
   addContact(){
+    //called in startScanner(), navigates with the data put into an array split into substrings
     this.details = this.scannedText.split(",");
     const navigationExtras: NavigationExtras = {
       state: {

@@ -1,26 +1,37 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title> Confirm Contacts </ion-title>
+    <ion-title class="titleHeader"> Confirm Contacts </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-title> Add Contact: </ion-title>
+  <ion-title style="text-align:center; font-size: x-large; margin: 16px;"> Add Contact: </ion-title>
 
   <ion-card>
-
+    <!--Card of information of the qr code scanned-->
     <ion-card-content>
-
-      <ion-item *ngFor="let con of contactInfo">
-        <p>{{con}}</p>
+      <ion-item>
+        <ion-text style="text-transform:capitalize">{{contactInfo[0]}}</ion-text>
       </ion-item>
-
-      <ion-item class="buttons">
-        <ion-button type="button" (click)="addUser()"> Add Contact </ion-button>
-        <ion-button type="button" (click)="cancel()"> Cancel </ion-button>
+      <ion-item>
+        <ion-text>Email: {{contactInfo[1]}}</ion-text>
       </ion-item>
+      <ion-item>
+        <ion-text>Phone: {{contactInfo[2]}}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-text>Address: {{contactInfo[3]}}</ion-text>
+      </ion-item>
+      <ion-item>
+        <ion-text>Company: {{contactInfo[4]}}</ion-text>
+      </ion-item>
+      
     </ion-card-content>
-
   </ion-card>
+  <!--Buttons to accept or cancel contact information fetch-->
+  <ion-item style="height: 100px; background-color: orange;">
+    <ion-button color="success" style="width: 50%; height:70px; font-size: large; margin: 16px;" type="button" (click)="addUser()"> Add Contact </ion-button>
+    <ion-button style="width: 50%; height:70px; font-size: large; margin: 16px;" type="button" (click)="cancel()"> Cancel </ion-button>
+  </ion-item>
   
 </ion-content>

@@ -20,12 +20,14 @@ export class LoginPage implements OnInit {
     private db: DatabaseService) { }
 
   async signUp() {
+    //pressing register navigates the user to the register page
     this.router.navigateByUrl('/register', {replaceUrl: true});
     this.router.routeReuseStrategy.shouldReuseRoute = () => false;
     this.router.onSameUrlNavigation = 'reload';
   }
 
   async login(){
+    //sends credentials to authentication service to verify user and reroute if valid
     const user = await this.auth.login(this.credentials.value);
     if (user) {
       this.router.navigateByUrl("/tabs", {replaceUrl: true});

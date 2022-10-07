@@ -12,10 +12,14 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-
-  <ion-button expand="full" type="button" (click)="startScanner()" class="ion-margin"> Scan </ion-button>
-  <ion-button expand="full" type="button" (click)="toggleShare()" class="ion-margin"> Share Contact Info </ion-button>
-
+  <!--Buttons for scanning and sharing contact info-->
+  <ion-button color="success" expand="full" type="button" (click)="startScanner()" class="ion-margin"> 
+    Scan 
+    <ion-icon style="padding-left: 2px;" name="scan" slot="end"></ion-icon>
+  </ion-button>
+  <ion-button color="tertiary" expand="full" type="button" (click)="toggleShare()" class="ion-margin"> Share Contact Info </ion-button>
+  <!--Presents a qr code of your contact info if you press share-->
+  <ion-title *ngIf="sharing" style="text-align:center; font-size:xx-large"> Your Contact Info: </ion-title>
   <ion-card class="ion-text-center" *ngIf="sharing">
     <ion-card-content>
       <qrcode [qrdata]="qrcodecontent" [width]="256" [errorCorrectionLevel]="'M'">

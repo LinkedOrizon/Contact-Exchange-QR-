@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title class="titleHeader">Sharing Contact</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card class="ion-text-center">
+    <ion-card-content>
+      <qrcode [qrdata]="qrcodecontent" [width]="256" [errorCorrectionLevel]="'M'">
+      </qrcode>
+    </ion-card-content>
+  </ion-card>
+  
+  <ion-button color="tertiary" expand="full" type="button" class="ion-margin" (click)="return()"> Return To Contacts </ion-button>
+
+
+</ion-content>
